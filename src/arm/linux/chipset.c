@@ -37,7 +37,8 @@ static inline bool is_ascii_numeric(char c) {
 }
 
 static inline uint16_t load_u16le(const void* ptr) {
-#if defined(__ARM_ARCH_7A__) || defined(__aarch64__)
+#if defined(__ARM_ARCH_7A__) || defined(__aarch64__) || defined(__gptx__)
+
     return *((const uint16_t*) ptr);
 #else
 	const uint8_t* byte_ptr = (const uint8_t*) ptr;
@@ -46,7 +47,8 @@ static inline uint16_t load_u16le(const void* ptr) {
 }
 
 static inline uint32_t load_u24le(const void* ptr) {
-#if defined(__ARM_ARCH_7A__) || defined(__aarch64__)
+#if defined(__ARM_ARCH_7A__) || defined(__aarch64__) || defined(__gptx__)
+
     return ((uint32_t) ((const uint8_t*) ptr)[2] << 16) | ((uint32_t) *((const uint16_t*) ptr));
 #else
 	const uint8_t* byte_ptr = (const uint8_t*) ptr;
@@ -55,7 +57,8 @@ static inline uint32_t load_u24le(const void* ptr) {
 }
 
 static inline uint32_t load_u32le(const void* ptr) {
-#if defined(__ARM_ARCH_7A__) || defined(__aarch64__)
+#if defined(__ARM_ARCH_7A__) || defined(__aarch64__) || defined(__gptx__)
+
     return *((const uint32_t*) ptr);
 #else
 	return ((uint32_t) ((const uint8_t*) ptr)[3] << 24) | load_u24le(ptr);
