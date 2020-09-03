@@ -26,7 +26,7 @@
 	#define CPUINFO_ARCH_ARM 1
 #endif
 
-#if defined(__aarch64__) || defined(_M_ARM64)
+#if defined(__aarch64__) || defined(__gptx__) || defined(_M_ARM64)
 	#define CPUINFO_ARCH_ARM64 1
 #endif
 
